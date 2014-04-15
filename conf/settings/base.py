@@ -160,7 +160,7 @@ INSTALLED_APPS = (
     'wagtail.wagtailsearch',
     'wagtail.wagtailredirects',
 
-    'torchbox',
+    'wagtailsite',
 )
 
 EMAIL_SUBJECT_PREFIX = '[wagtail-wagtailsite] '
@@ -210,7 +210,7 @@ LOGGING = {
 
 # WAGTAIL SETTINGS
 
-WAGTAIL_SITE_NAME = 'torchbox.com'
+WAGTAIL_SITE_NAME = 'wagtail.io'
 
 # Override the search results template for wagtailsearch
-WAGTAILSEARCH_RESULTS_TEMPLATE = 'torchbox/search_results.html'
+WAGTAILSEARCH_RESULTS_TEMPLATE = 'wagtailsite/search_results.html'
