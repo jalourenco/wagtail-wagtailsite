@@ -1,0 +1,126 @@
+{% extends "wagtailsite/base.html" %}
+{% load wagtailsite_tags pageurl static %}
+
+{% block content %}
+    <div id="hero">
+        <div id="hero-bg1"></div>
+        <h3>A fresh take on content management.</h3>
+        <div class="inner-column">
+            <h4>Elegant. Open source. Easy.<br>Wagtail is the new Django CMS from Torchbox.</h4>
+            <!-- VIDEO STUFF -->
+            <a class="btn youtube desktop" href="http://player.vimeo.com/video/86036070"><i class="fa fa-play-circle"></i>Promo video</a>
+            <a class="btn mobile" target="_blank" href='http://player.vimeo.com/video/86036070'><i class="fa fa-play-circle"></i>Promo video</a>
+            <p>For a more in-depth look at Wagtail, please watch our <a class="youtube" href="http://player.vimeo.com/video/86719782">RCA Video case study</a>.</p>
+            <script>
+                $('.youtube').colorbox({iframe: true, width: 1280, height: 720, href:function(){
+                    var videoId = new RegExp('[\\?&]v=([^&#]*)').exec(this.href);
+                    if (videoId && videoId[1]) {
+                        return 'http://youtube.com/embed/'+videoId[1]+'?rel=0&wmode=transparent';
+                    }
+                }});
+            </script>
+            <!-- VIDEO STUFF -->
+        </div>
+        <div id="intro">
+            <div class="intro-half">
+                <h4>Good to go?</h4>  
+                <p>Grab the open source code from GitHub and start building your new site.</p>                
+                <a class="btn" href="http://github.com/torchbox/wagtail/" target="_blank"><i class="fa fa-download"></i>Download Wagtail</a>
+            </div>
+            <div class="intro-half">
+                <h4>Need an agency?</h4>
+                <p>Talk to Torchbox, the creators of Wagtail, about your requirements.</p>
+                <a class="btn" href="mailto:hello@wagtail.io"><i class="fa fa-envelope"></i>Get in touch</a>      
+            </div> 
+        </div>
+    </div>
+    <hr>
+    <div id="features">
+        <h2>What's so good about Wagtail?</h2>
+        <ul class="features-list">
+            <li>
+                <h4>Free</h4>
+                <p>Wagtail is open source. We’ve used the BSD license, which gives you as much freedom as possible. And we’re here to support and encourage a community of developers to make Wagtail better and better.</p>
+            </li>
+            <li>
+                <h4>Beautiful</h4>
+                <p>Working with your content shouldn’t be a grind! We have worked hard to give Wagtail a fast and friendly user interface. We want you to look forward to using Wagtail every day to manage your site.</p>
+            </li>
+            <li>
+                <h4>Light</h4>
+                <p>Wagtail runs on a standard web server environment. You can host it on your own machine, in the cloud, or even a shared server. It uses resources sparingly, so you don’t need big, expensive servers.</p>
+            </li>
+            <li>
+                <h4>Fast</h4>
+                <p>It’s a busy world out there and nobody likes to be kept waiting! We designed Wagtail to make your site satisfyingly responsive and super-quick. Page loading times and search results are lightning fast.</p>
+            </li>
+            <li>
+                <h4>Agile</h4>
+                <p>Adding features and redesigning sections of your site shouldn't be expensive. Wagtail is built by developers for developers. Spend less time on configuration and more perfecting your new site.</p>
+            </li>
+            <li>
+                <h4>Portable</h4>
+                <p>Nothing lasts forever. If you want to change agency or hosting company your CMS shouldn't hold you back. Wagtail runs on the popular Django stack, loved by developers and agencies around the world.</p>
+            </li>
+            
+        </ul>  
+    </div>
+    <hr> 
+    <a name="testimonials"></a> 
+    <div class="testimonials">
+        <h2>Wagtail in action.</h2>
+        
+        <div class="macbook">
+            <!-- VIDEO STUFF -->
+            <a class="btn youtube desktop" href="http://player.vimeo.com/video/86719782"><i class="fa fa-play-circle"></i>Video case study</a>
+
+            <script>
+                $('.youtube').colorbox({iframe: true, width: 1280, height: 720, href:function(){
+                    var videoId = new RegExp('[\\?&]v=([^&#]*)').exec(this.href);
+                    if (videoId && videoId[1]) {
+                        return 'http://youtube.com/embed/'+videoId[1]+'?rel=0&wmode=transparent';
+                    }
+                }});
+            </script>
+            <!-- VIDEO STUFF -->
+
+            <img class="mbadesk" src="{% static "wagtailsite/images/mba2.png" %}" style='width:100%; max-width: 848px;' >
+            <img class="mbamobile" src="{% static "wagtailsite/images/mba2-2.png" %}" style='width:100%; max-width: 848px;' >
+            <a class="btn mobile" target="_blank" href='http://player.vimeo.com/video/86719782'><i class="fa fa-play-circle"></i>Video case study</a>
+        </div>
+        <div class="iphone"></div>
+        <div class="client-info">
+            <h4>Royal College of Art</h4>
+            <p>"The Royal College of Art website needs to be innovative, creative and functional. We assessed a host of proprietary and open source CMSs, and couldn't find one that would deliver an RCA look and feel, and be easy to use. We asked Torchbox to design a new CMS, powered by Django. Wagtail is the result, and it's a perfect fit."</p>
+            <small>Octavia Reeve</small>
+            <p class="tiny">Senior Publishing Manager</p>
+            <a class="visitrca" href="http://www.rca.ac.uk/" target="_blank">Visit RCA's website</a>
+        </div>
+    </div>
+    <hr>
+    <a name="why"></a>
+    <div id="why">
+        <h2>FAQs</h2>
+        <ul id="whywagtail">
+            <li>
+                <h4>Why 'Wagtail'?</h4>
+                <p><a href = "https://www.rspb.org.uk/wildlife/birdguide/name/p/piedwagtail/index.aspx">Wagtails</a> are pretty little birds from the Motacilla family. From spring to autumn they gather on the lawns outside <a href = "http://www.torchbox.com/">Torchbox</a>'s offices, charming us and our visitors. We wanted a name which reflected our beautiful setting and which had a sense of light and delight. Plus birds make easy logos.</p>
+            </li>
+            <hr>
+            <li>
+                <h4>Why a new CMS?</h4>
+                <p>There are plenty of great open source content management systems. We've used Drupal very successfully on big sites for clients including high profile campaigning NGOs, fundraising charities, think tanks, universities and public sector organisations. There are also some excellent Django CMSs, including <a href = "http://mezzanine.jupo.org/">Mezzanine</a>, <a href = "http://www.feincms.org/">Fein</a> and <a href = "https://www.django-cms.org/">Django CMS</a>, with thriving developer communities and impressive case studies. But having built content-managed websites for 14 years we have strong opinions about the editor experience and how a CMS should work and be structured, and we need to manage a more rapid pace of development than we can achieve by contributing to existing projects.</p>
+            </li>
+            <hr>
+            <li>
+                <h4>Why Django?</h4>
+                <p>Torchbox has been enthusiastic users and supporters of Django since 0.96, and we're proud to count Django luminaries like <a href ="http://en.wikipedia.org/wiki/Simon_Willison">Simon Willison</a> and <a href = "http://www.aeracode.org/">Andrew Godwin</a> among our alumni. Django has been our favoured platform for bespoke application development over the last five years, because it continues to hit the sweet spot for robustness, speed of development and coding pleasure.</p>
+            </li>
+            <hr>
+            <li>
+                <h4>Why doesn't Wagtail do X?</h4>
+                <p>We think Wagtail includes all the core publishing features that most large, complex sites need. In particular, we've worked hard to remove any limitations from the way that pages built in Wagtail can look or behave. But if you have any bespoke requirements that aren't built in, remember that Wagtail is just a Django app; any Python developer can fork it and add the features you need, or, even better, integrate using Wagtail's plugin architecture, and share your work so everyone benefits! We're continuing to improve and extend Wagtail all the time, so popular feature requests should be addressed quickly.</p>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

@@ -1,4 +1,4 @@
-{% load cache compress static wagtailuserbar %}
+{% load wagtailsite_tags cache compress static wagtailuserbar %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -6,115 +6,435 @@
 <!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_postfix %} | Torchbox{% endblock %}</title>
+        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_postfix %} | Wagtail is the new Django CMS from Torchbox{% endblock %}</title>
 
         <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
-
-        {# Local static assets such as css, images and javascrpt should be stored at [yourapp]/static/[yourapp]/... #}
         
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Varela" />
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"  />
+
         {% compress css %}
-            <link rel="stylesheet" href="{% static "torchbox/css/vendor/jquery.bxslider.css" %}" />
-
-            <link rel="stylesheet" href="{% static "torchbox/css/normalize.css" %}">
-            <link rel="stylesheet" href="{% static "torchbox/css/main.css" %}">
-            <link rel="stylesheet" href="{% static "torchbox/css/medium.css" %}">
-            <link rel="stylesheet" href="{% static "torchbox/css/large.css" %}">
-            <link rel="stylesheet" href="{% static "torchbox/css/fontello.css" %}">
-
-            <script src="{% static "js/vendor/modernizr-2.6.2.min.js" %}" type="text/javascript"></script>
-            <script src="{% static "js/main.js" %}"></script>
+            <link rel="stylesheet" href="{% static "wagtailsite/css/colorbox.css" %}">
+            <link rel="stylesheet" href="{% static "wagtailsite/css/styles.css" %}" />
         {% endcompress %}
 
-        <link rel="shortcut icon" href="{% static "torchbox/images/favicon.ico" %}"/>
+        {% compress js %}{% endcompress %}
 
-        <!-- Load fonts -->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+        <link rel="shortcut icon" href="{% static "wagtailsite/images/wagtail-favicon-32x32.ico" %}" />
 
-        {% block extra_css %}{% endblock %} {# Override this block in individual templates in order to add stylesheets on a template by template basis #}
-
-        {# Javascript that needs to be called from head e.g. google analytics snippet, modernizr etc #}
-        <script type="text/javascript">
-              var _gaq = _gaq || [];
-              _gaq.push(['_setAccount', 'UA-xxxxxxx-x']);
-              _gaq.push(['_trackPageview']);
-
-              (function() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-              })();
-        </script>
+        {% block extra_css %}{% endblock %} 
     </head>
 
-    <body class="page-{{ self|content_type }} title-{{ self.title|slugify }} pageid-{{ self.id }} {% block body_class %}{% endblock %}"> {# Override body_class block to set custom body classes on a template by template basis #}
-        {% wagtailuserbar %} {# Don't delete this #}
+    <body class="page-{{ self|content_type }} title-{{ self.title|slugify }} pageid-{{ self.id }} {% block body_class %}{% endblock %}"> 
+        {% wagtailuserbar %}
 
-        <header class="container">
-            {% block menu %}
-                {% get_site_root as site_root %}
-                {% top_menu parent=site_root calling_page=self %}
-            {% endblock %}
-        </header>
-
-        <main>
-            <aside>
-                {% block secondary_menu %}
-                    {% secondary_menu calling_page=self %}
-                {% endblock %}
-            </aside>
-
+        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5XDDLH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5XDDLH');</script>
+        
+        <div id="nav-wrap">
+            <nav>
+                <div id="logo">
+                    <img src="{% static "wagtailsite/images/navlogo2.png" %}">
+                </div>
+                <ul class="menu">
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="#get">Get Wagtail</a></li>
+                    <li><a href="#why">FAQs</a></li>
+                    <li><a href="#testimonials">Testimonial</a></li>
+                    <li><a href="#features">What's so good?</a></li>
+                </ul>    
+            </nav>
+        </div>  
+        <div id="container">
+            
             {% block content %}{% endblock %}
 
-        </main>
-
-        <footer class="clearfix">
-            <div class="contact container listing">
-                <h2>Say hello</h2>
-                <ul class="bleed">
-                    <li><a href="mailto:hello@torchbox.com"><i class="icon-mail"></i><span>hello@torchbox.com</span></a></li>
-                    <li><a href="tel:+441608811870"><i class="icon-phone"></i><span>+44 (0) 1608 811870</span></a></li>
-                    <li><a href="https://twitter.com/torchbox"><i class="icon-twitter"></i><span>@torchbox</span></a></li>
-                </ul>
+            <hr>
+            <a name="get"></a>
+            <div id="download">
+                <h2>Get Wagtail.</h2>
+                <div class="download-half">
+                    <h4>Good to go?</h4>   
+                    <p>Grab the open source code from GitHub and start building your new site.</p>                
+                    <a class="btn" href="http://github.com/torchbox/wagtail/" target="_blank"><i class="fa fa-download"></i>Download Wagtail</a>
+                </div>
+                <div class="download-half">
+                    <h4>Need an agency?</h4>
+                    <p>Talk to Torchbox, the creators of Wagtail, about your requirements.</p>
+                    <a class="btn" href="mailto:hello@wagtail.io"><i class="fa fa-envelope"></i>Get in touch</a>      
+                </div>
             </div>
-            
-            <div class="offices container ">
-                <h2 class="visuallyhidden">Offices</h2>
-                <ul class="clearfix listing">
-                    <li>
-                        <h3>Oxford</h3>
+            <hr>
+            <div id="mailing-list">
+                <h2>Stay up to date with Wagtail.</h2>
+                    
+                <!-- Begin MailChimp Signup Form -->
+                <link href="http://cdn-images.mailchimp.com/embedcode/classic-081711.css"
+                rel="stylesheet" type="text/css">
+                <style type="text/css">
+                #mc_embed_signup{clear:left; font:1em
+                'Open Sans',Helvetica,Arial,sans-serif; }
 
-                        <div class="vcard">
-                            <span class="street-address">Unit&nbsp;9, Southill&nbsp;Business&nbsp;Park</span>
-                            <span class="region">Charlbury</span>,
-                            <span class="postal-code">OX7&nbsp;3EW</span>, 
-                            <span class="country-name">UK</span>
-                        </div>
-                    </li>
-                    <li>
-                        <h3>Bristol</h3>
-                        <div class="vcard">
-                            <span class="street-address">Prudential&nbsp;Buildings, 11-19&nbsp;Wine&nbsp;Street</span>
-                            <span class="region">Bristol</span>,
-                            <span class="postal-code">BS1&nbsp;2PH</span>, 
-                            <span class="country-name">UK</span>
-                        </div>
-                    </li>
-                </ul>
+                    #mc_embed_signup .mc-field-group input {
+                        color: #717171;
+                        border: 1px solid #d4d4d4;
+                        border-radius: 6px;
+                        width: 400PX;
+                        margin: 0 auto;
+                        padding: 0.9em;
+                        font-family: 'Open Sans', sans-serif;
+                        font-size: 1em;
+                        font-weight: 100;
+                        text-align: center;
+                        background-color: #ffffff;
+                        margin-bottom: 0.7em;
+                    }
+
+                        
+
+                    #mc_embed_signup .mc-field-group input:hover {
+                        background-color: #ffffff;
+                        transition: 0.2s ease;
+                    }
+
+                    .mc-field-group {
+                        width: 400px;
+                    }
+
+                    #mc_embed_signup .button {
+                        clear: both;
+                        background: none;
+                        border: 2px solid #41b0ae;
+                        border-radius: 6px;
+                        color: #41b0ae;
+                        cursor: pointer;
+                        display: block;
+                        font-family: 'Open Sans', sans-serif;
+                        font-size: 1em;
+                        font-weight: 300;
+                        padding: 0.7em 0.5em 0.7em 0.5em;
+                        text-align: center;
+                        text-decoration: none;
+                        vertical-align: top;
+                        white-space: nowrap;
+                        width: 200px;
+                        height: auto;
+                        margin: 0 auto 2em;
+                    }
+
+                    #mc_embed_signup .button:hover {
+                        background-color: #41b0ae;
+                        color: #ffffff;
+                        transition: 0.3s ease;
+                    }
+
+                    #mc_embed_signup #mc-embedded-subscribe:before {
+                        content: "\f040"; 
+                        font-family: FontAwesome;
+                        font-style: normal;
+                        font-weight: normal;
+                        text-decoration: inherit;
+                        padding-right: 1em;
+                    }
+
+                    #mc_embed_signup form {
+                        padding: 0;
+                    }
+
+                    #mc_embed_signup .mc-field-group {
+                        width: 100%;
+                        padding-bottom: 1em;
+                    }
+
+                    @media screen and (max-width: 1025px) {
+                            #mc_embed_signup .mc-field-group input {
+                            width: 240px;
+                            }
+                            
+                            #mc_embed_signup .button {
+                            border: 1px solid #41b0ae;
+                            font-size: 0.8em;
+                            padding: 0.2em 0 0.2em 0;
+                            margin: 0 auto 1.5em;
+                            width: 240px;
+                            }   
+                            
+                            #mc_embed_signup .mc-field-group input {
+                            border: 1px solid #d4d4d4;
+                            border-radius: 6px;
+                            width: 240px;
+                            margin: 0 auto;
+                            padding: 0.8em;
+                            font-family: 'Open Sans', sans-serif;
+                            font-size: 0.8em;
+                            font-weight: 100;
+                            text-align: center;
+                            background-color: #ffffff;
+                            }
+                            
+                        }
+
+                </style>
+                <div id="mc_embed_signup">
+                    <form action="http://torchbox.us1.list-manage.com/subscribe/post?u=fa038e191e9c77563d1c3bfa4&amp;id=a931fc0c9a"
+                    method="post" id="mc-embedded-subscribe-form"
+                    name="mc-embedded-subscribe-form" class="validate" target="_blank"
+                    novalidate>
+                    <div class="mc-field-group">
+                    <input type="email" value="Your email address..." name="EMAIL" class="required email" id="mce-EMAIL" onfocus="this.value=''">
+                    </div>
+                    <div id="mce-responses" class="clear">
+                    <div class="response" id="mce-error-response" style="display:none"></div>
+                    <div class="response" id="mce-success-response" style="display:none"></div>
+                    </div>    <!-- real people should not fill this in and expect good
+                    things - do not remove this or risk form bot signups-->
+                        <div style="position: absolute; left: -5000px;"><input type="text"
+                    name="b_fa038e191e9c77563d1c3bfa4_a931fc0c9a" value=""></div>
+                    <div class="clear"><button type="submit"
+                    name="subscribe" id="mc-embedded-subscribe" class="button">Sign up</button></div>
+                    </form>
+                </div>
+                <script type="text/javascript">
+                    var fnames = new Array();var ftypes = new
+                    Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';
+                    try {
+                        var jqueryLoaded=jQuery;
+                        jqueryLoaded=true;
+                    } catch(err) {
+                        var jqueryLoaded=false;
+                    }
+                    var head= document.getElementsByTagName('head')[0];
+                    if (!jqueryLoaded) {
+                        var script = document.createElement('script');
+                        script.type = 'text/javascript';
+                        script.src = '//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js';
+                        head.appendChild(script);
+                        if (script.readyState && script.onload!==null){
+                            script.onreadystatechange= function () {
+                                  if (this.readyState == 'complete') mce_preload_check();
+                            }
+                        }
+                    }
+
+                    var err_style = '';
+                    try{
+                        err_style = mc_custom_error_style;
+                    } catch(e){
+                        err_style = '#mc_embed_signup
+                    input.mce_inline_error{border-color:#6B0505;} #mc_embed_signup
+                    div.mce_inline_error{margin: 0 0 1em 0; padding: 5px 10px;
+                    background-color:#6B0505; font-weight: bold; z-index: 1;
+                    color:#fff;}';
+                    }
+                    var head= document.getElementsByTagName('head')[0];
+                    var style= document.createElement('style');
+                    style.type= 'text/css';
+                    if (style.styleSheet) {
+                      style.styleSheet.cssText = err_style;
+                    } else {
+                      style.appendChild(document.createTextNode(err_style));
+                    }
+                    head.appendChild(style);
+                    setTimeout('mce_preload_check();', 250);
+
+                    var mce_preload_checks = 0;
+                    function mce_preload_check(){
+                        if (mce_preload_checks>40) return;
+                        mce_preload_checks++;
+                        try {
+                            var jqueryLoaded=jQuery;
+                        } catch(err) {
+                            setTimeout('mce_preload_check();', 250);
+                            return;
+                        }
+                        var script = document.createElement('script');
+                        script.type = 'text/javascript';
+                        script.src = 'http://downloads.mailchimp.com/js/jquery.form-n-validate.js';
+                        head.appendChild(script);
+                        try {
+                            var validatorLoaded=jQuery("#fake-form").validate({});
+                        } catch(err) {
+                            setTimeout('mce_preload_check();', 250);
+                            return;
+                        }
+                        mce_init_form();
+                    }
+                    function mce_init_form(){
+                        jQuery(document).ready( function($) {
+                          var options = { errorClass: 'mce_inline_error', errorElement:
+                    'div', onkeyup: function(){}, onfocusout:function(){},
+                    onblur:function(){}  };
+                          var mce_validator = $("#mc-embedded-subscribe-form").validate(options);
+                          $("#mc-embedded-subscribe-form").unbind('submit');//remove the
+                    validator so we can get into beforeSubmit on the ajaxform, which then
+                    calls the validator
+                          options = { url:
+                    'http://torchbox.us1.list-manage1.com/subscribe/post-json?u=fa038e191e9c77563d1c3bfa4&id=a931fc0c9a&c=?',
+                    type: 'GET', dataType: 'json', contentType: "application/json;
+                    charset=utf-8",
+                                        beforeSubmit: function(){
+                                            $('#mce_tmp_error_msg').remove();
+                                            $('.datefield','#mc_embed_signup').each(
+                                                function(){
+                                                    var txt = 'filled';
+                                                    var fields = new Array();
+                                                    var i = 0;
+                                                    $(':text', this).each(
+                                                        function(){
+                                                            fields[i] = this;
+                                                            i++;
+                                                        });
+                                                    $(':hidden', this).each(
+                                                        function(){
+                                                            var bday = false;
+                                                            if (fields.length == 2){
+                                                                bday = true;
+                                                                fields[2] =
+                    {'value':1970};//trick birthdays into having years
+                                                            }
+                                                        if ( fields[0].value=='MM' &&
+                    fields[1].value=='DD' && (fields[2].value=='YYYY' || (bday &&
+                    fields[2].value==1970) ) ){
+                                                        this.value = '';
+                       } else if ( fields[0].value=='' && fields[1].value=='' &&
+                    (fields[2].value=='' || (bday && fields[2].value==1970) ) ){
+                                                        this.value = '';
+                       } else {
+                           if (/\[day\]/.test(fields[0].name)){
+                                                               this.value =
+                    fields[1].value+'/'+fields[0].value+'/'+fields[2].value;
+                           } else {
+                                                               this.value =
+                    fields[0].value+'/'+fields[1].value+'/'+fields[2].value;
+                                                           }
+                                                       }
+                                                        });
+                                                });
+                                            $('.phonefield-us','#mc_embed_signup').each(
+                                                function(){
+                                                    var fields = new Array();
+                                                    var i = 0;
+                                                    $(':text', this).each(
+                                                        function(){
+                                                            fields[i] = this;
+                                                            i++;
+                                                        });
+                                                    $(':hidden', this).each(
+                                                        function(){
+                                                            if ( fields[0].value.length !=
+                    3 || fields[1].value.length!=3 || fields[2].value.length!=4 ){
+                                                        this.value = '';
+                       } else {
+                           this.value = 'filled';
+                                                       }
+                                                        });
+                                                });
+                                            return mce_validator.form();
+                                        },
+                                        success: mce_success_cb
+                                    };
+                          $('#mc-embedded-subscribe-form').ajaxForm(options);
+
+
+                        });
+                    }
+                    function mce_success_cb(resp){
+                        $('#mce-success-response').hide();
+                        $('#mce-error-response').hide();
+                        if (resp.result=="success"){
+                            $('#mce-'+resp.result+'-response').show();
+                            $('#mce-'+resp.result+'-response').html(resp.msg);
+                            $('#mc-embedded-subscribe-form').each(function(){
+                                this.reset();
+                        });
+                        } else {
+                            var index = -1;
+                            var msg;
+                            try {
+                                var parts = resp.msg.split(' - ',2);
+                                if (parts[1]==undefined){
+                                    msg = resp.msg;
+                                } else {
+                                    i = parseInt(parts[0]);
+                                    if (i.toString() == parts[0]){
+                                        index = parts[0];
+                                        msg = parts[1];
+                                    } else {
+                                        index = -1;
+                                        msg = resp.msg;
+                                    }
+                                }
+                            } catch(e){
+                                index = -1;
+                                msg = resp.msg;
+                            }
+                            try{
+                                if (index== -1){
+                                    $('#mce-'+resp.result+'-response').show();
+                                    $('#mce-'+resp.result+'-response').html(msg);
+                                } else {
+                                    err_id = 'mce_tmp_error_msg';
+                                    html = '<div id="'+err_id+'" style="'+err_style+'">
+                    '+msg+'</div>';
+
+                                    var input_id = '#mc_embed_signup';
+                                    var f = $(input_id);
+                                    if (ftypes[index]=='address'){
+                                        input_id = '#mce-'+fnames[index]+'-addr1';
+                                        f = $(input_id).parent().parent().get(0);
+                                    } else if (ftypes[index]=='date'){
+                                        input_id = '#mce-'+fnames[index]+'-month';
+                                        f = $(input_id).parent().parent().get(0);
+                                    } else {
+                                        input_id = '#mce-'+fnames[index];
+                                        f = $().parent(input_id).get(0);
+                                    }
+                                    if (f){
+                                        $(f).append(html);
+                                        $(input_id).focus();
+                                    } else {
+                                        $('#mce-'+resp.result+'-response').show();
+                                        $('#mce-'+resp.result+'-response').html(msg);
+                                    }
+                                }
+                            } catch(e){
+                                $('#mce-'+resp.result+'-response').show();
+                                $('#mce-'+resp.result+'-response').html(msg);
+                            }
+                        }
+                    }
+
+                </script>
+                <!--End mc_embed_signup-->
+                        
+                <a class="btn" href="https://twitter.com/wagtailcms" target="_blank"><i class="fa fa-twitter"></i></a>
+                <a class="btn" href="https://github.com/torchbox/wagtail/" target="_blank"><i class="fa fa-github"></i></a>     
             </div>
-        </footer>
+            <div id="footer">
+                <p>Wagtail is powered by <a href="http://www.djangoproject.com" target="_blank">Django</a> and released under the <a href="https://github.com/torchbox/wagtail/blob/master/LICENSE" target="_blank">BSD License</a>.</p>
+                <p>View <a href="http://torchbox.github.io/wagtail/" target="_blank">the documentation</a> or visit Wagtail on <a href="https://github.com/torchbox/wagtail/" target="_blank">GitHub</a>.</p>
+                <p>Would you like Torchbox to build your new website with Wagtail? <a href="mailto:hello@wagtail.io">Get in touch.</a></p>
+                <div id="footerlogo">
+                    <a href="http://www.torchbox.com" target="_blank"><img src="{% static "wagtailsite/images/tbxlogo.png" %}"></a>
+                </div>
+                <p>Copyright &copy; 2014 <a href="http://www.torchbox.com" target="_blank">Torchbox Ltd</a></p>
+            </div>
+        </div>
 
-        <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
         {% compress js %}
-            <script src="{% static "torchbox/js/vendor/jquery.bxslider.min.js" %}"></script>
-            <script src="{% static "torchbox/js/vendor/fluidvids.js" %}"></script>
-            {# Custom javascript #}
-            {# Local static assets such as css, images and javascrpt should be stored at [yourapp]/static/[yourapp]/... #}
-            <script src="{% static "torchbox/js/main.js" %}"></script>
+            <script src="{% static "wagtailsite/js/vendor/jquery.colorbox-min.js" %}"></script>  
         {% endcompress %}
 
-        {% block extra_js %}{% endblock %} {# Override this block in individual templates in order to add javascript on a template by template basis #}
+        {% block extra_js %}{% endblock %}
     </body>
 </html>

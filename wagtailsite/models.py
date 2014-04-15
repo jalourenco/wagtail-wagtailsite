@@ -19,3 +19,9 @@ from wagtail.wagtailsnippets.models import register_snippet
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
 from taggit.models import Tag, TaggedItemBase
+
+class HomePage(Page):
+    search_name = "Homepage"
+
+    class Meta:
+        verbose_name = "Homepage"
