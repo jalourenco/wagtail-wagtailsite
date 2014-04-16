@@ -8,7 +8,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_postfix %} | Wagtail is the new Django CMS from Torchbox{% endblock %}</title>
+        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}</title>
 
         <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
         
@@ -18,7 +18,7 @@
 
         {% compress css %}
             <link rel="stylesheet" href="{% static "wagtailsite/css/colorbox.css" %}">
-            <link rel="stylesheet" href="{% static "wagtailsite/css/styles.css" %}" />
+            <link rel="stylesheet" type="text/less" href="{% static "wagtailsite/css/styles.less" %}" />
         {% endcompress %}
 
         {% compress js %}{% endcompress %}
@@ -46,10 +46,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
                 <ul class="menu">
                     <li><a href="/blog/">Blog</a></li>
-                    <li><a href="#get">Get Wagtail</a></li>
-                    <li><a href="#why">FAQs</a></li>
-                    <li><a href="#testimonials">Testimonial</a></li>
-                    <li><a href="#features">What's so good?</a></li>
+                    <li><a href="/#get">Get Wagtail</a></li>
+                    <li><a href="/#why">FAQs</a></li>
+                    <li><a href="/#testimonials">Testimonial</a></li>
+                    <li><a href="/#features">What's so good?</a></li>
                 </ul>    
             </nav>
         </div>  
@@ -57,21 +57,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
             {% block content %}{% endblock %}
 
-            <hr>
-            <a name="get"></a>
-            <div id="download">
-                <h2>Get Wagtail.</h2>
-                <div class="download-half">
-                    <h4>Good to go?</h4>   
-                    <p>Grab the open source code from GitHub and start building your new site.</p>                
-                    <a class="btn" href="http://github.com/torchbox/wagtail/" target="_blank"><i class="fa fa-download"></i>Download Wagtail</a>
-                </div>
-                <div class="download-half">
-                    <h4>Need an agency?</h4>
-                    <p>Talk to Torchbox, the creators of Wagtail, about your requirements.</p>
-                    <a class="btn" href="mailto:hello@wagtail.io"><i class="fa fa-envelope"></i>Get in touch</a>      
-                </div>
-            </div>
             <hr>
             <div id="mailing-list">
                 <h2>Stay up to date with Wagtail.</h2>

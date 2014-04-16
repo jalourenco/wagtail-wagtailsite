@@ -169,7 +169,8 @@ INTERNAL_IPS = ('127.0.0.1', '10.0.2.2')
 
 # django-compressor settings
 COMPRESS_PRECOMPILERS = (
-   ('text/x-scss', 'django_libsass.SassCompiler'),
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+    ('text/less', 'lesspress.LessCompiler'),
 )
 
 COMPRESS_OFFLINE = True
