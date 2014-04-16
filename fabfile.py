@@ -60,7 +60,6 @@ def deploy():
         run("/usr/local/django/virtualenvs/wagtailsite/bin/python manage.py compress --settings=conf.settings.production")
 
     sudo("/usr/bin/supervisorctl restart wagtailsite")
-    #sudo("/usr/local/django/virtualenvs/tbxwagtail/bin/python manage.py update_index --settings=conf.settings.production")
 
 # @roles('production')
 # def pull_live_data():
