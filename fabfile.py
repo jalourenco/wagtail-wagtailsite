@@ -4,8 +4,8 @@ from fabric.api import *
 import uuid
 
 env.roledefs = {
-    'staging': ['tbxwagtail@django-staging.torchbox.com'],
-    'production': ['tbxwagtail@by-web-2.torchbox.com'],
+    'staging': ['wagtailsite@django-staging.torchbox.com'],
+    'production': ['wagtailsite@by-web-2.torchbox.com'],
 }
 
 # TODO: a nicer dict of settings
@@ -21,43 +21,46 @@ env.roledefs = {
 #     }
 # }
 
-PROJECT = "wagtail-torchbox"
-STAGING_DB_USERNAME = "tbxwagtail"
+PROJECT = "wagtail-wagtailsite"
+STAGING_DB_USERNAME = "wagtailsite"
 STAGING_DB_SERVER = "localhost"
-LIVE_DB_USERNAME = "tbxwagtail"
+LIVE_DB_USERNAME = "wagtailsite"
 LIVE_DB_SERVER = "by-postgres-a"
-DB_NAME = "wagtail-torchbox"
+DB_NAME = "wagtail-wagtailsite"
 LOCAL_DUMP_PATH = "~/"
 REMOTE_DUMP_PATH = "~/"
 
+@roles('staging')
+def staging_restart():
+    with cd('/usr/local/django/wagtailsite/'):
+        run("/usr/local/django/virtualenvs/wagtailsite/bin/pip install -r requirements/production.txt")
+        run("/usr/local/django/virtualenvs/wagtailsite/bin/python manage.py syncdb --settings=conf.settings.production --noinput")
+        run("/usr/local/django/virtualenvs/wagtailsite/bin/python manage.py migrate --settings=conf.settings.production --noinput")
+        run("/usr/local/django/virtualenvs/wagtailsite/bin/python manage.py collectstatic --settings=conf.settings.production --noinput")
+        run("/usr/local/django/virtualenvs/wagtailsite/bin/python manage.py compress --force --settings=conf.settings.production")
+
+    run("sudo /usr/bin/supervisorctl restart wagtailsite")
 
 @roles('staging')
 def deploy_staging():
-    with cd('/usr/local/django/tbxwagtail/'):
+    with cd('/usr/local/django/wagtailsite/'):
         run("git pull")
-        run("git submodule update")
-        run("/usr/local/django/virtualenvs/tbxwagtail/bin/pip install -r requirements/production.txt")
-        run("/usr/local/django/virtualenvs/tbxwagtail/bin/python manage.py syncdb --settings=tbx.settings.production --noinput")
-        run("/usr/local/django/virtualenvs/tbxwagtail/bin/python manage.py migrate --settings=tbx.settings.production --noinput")
-        run("/usr/local/django/virtualenvs/tbxwagtail/bin/python manage.py collectstatic --settings=tbx.settings.production --noinput")
-        run("/usr/local/django/virtualenvs/tbxwagtail/bin/python manage.py compress --force --settings=tbx.settings.production")
 
-    run("sudo /usr/bin/supervisorctl restart tbxwagtail")
+    staging_restart()
 
 @roles('production')
 def deploy():
-    with cd('/usr/local/django/tbxwagtail/'):
+    with cd('/usr/local/django/wagtailsite/'):
         run("git pull")
-        run("git submodule update")
 
-        run("/usr/local/django/virtualenvs/tbxwagtail/bin/pip install -r requirements/production.txt")
-        run("/usr/local/django/virtualenvs/tbxwagtail/bin/python manage.py syncdb --settings=tbx.settings.production --noinput")
-        run("/usr/local/django/virtualenvs/tbxwagtail/bin/python manage.py migrate --settings=tbx.settings.production --noinput")
-        run("/usr/local/django/virtualenvs/tbxwagtail/bin/python manage.py collectstatic --settings=tbx.settings.production --noinput")
-        run("/usr/local/django/virtualenvs/tbxwagtail/bin/python manage.py compress --settings=tbx.settings.production")
+        run("/usr/local/django/virtualenvs/wagtailsite/bin/pip install -r requirements/production.txt")
+        run("/usr/local/django/virtualenvs/wagtailsite/bin/python manage.py syncdb --settings=conf.settings.production --noinput")
+        run("/usr/local/django/virtualenvs/wagtailsite/bin/python manage.py migrate --settings=conf.settings.production --noinput")
+        run("/usr/local/django/virtualenvs/wagtailsite/bin/python manage.py collectstatic --settings=conf.settings.production --noinput")
+        run("/usr/local/django/virtualenvs/wagtailsite/bin/python manage.py compress --settings=conf.settings.production")
 
-    sudo("/usr/bin/supervisorctl restart tbxwagtail")
-    #sudo("/usr/local/django/virtualenvs/tbxwagtail/bin/python manage.py update_index --settings=tbx.settings.production")
+    sudo("/usr/bin/supervisorctl restart wagtailsite")
+    #sudo("/usr/local/django/virtualenvs/tbxwagtail/bin/python manage.py update_index --settings=conf.settings.production")
 
 # @roles('production')
 # def pull_live_data():
@@ -114,7 +117,7 @@ def push_staging_media():
     put('%s.gz' % local_media_dump, '%s.gz' % remote_media_dump)
 
     # unzip everything
-    with cd('/usr/local/django/tbxwagtail/'):
+    with cd('/usr/local/django/wagtailsite/'):
         run('rm -rf media')
         run('mv %s.gz .' % remote_media_dump)
         run('tar -xzvf %s.gz' % media_filename)
@@ -127,7 +130,7 @@ def pull_staging_media():
     remote_media_dump = "%s%s" % (REMOTE_DUMP_PATH, media_filename)
 
     # tar and download media
-    with cd('/usr/local/django/tbxwagtail/'):
+    with cd('/usr/local/django/wagtailsite/'):
         run('tar -cvf %s media' % remote_media_dump)
         run('gzip %s' % remote_media_dump)
     
