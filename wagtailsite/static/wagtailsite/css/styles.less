@@ -1011,7 +1011,7 @@ border-top-right-radius: 6px;
 .listing {
     margin-bottom:2em;
     text-align:left;
-    
+
     li{
         .clearfix();
         padding:2em;
@@ -1095,19 +1095,23 @@ border-top-right-radius: 6px;
  @media screen and (max-width: 1025px) {
     
     nav {
-        padding: 0 5% 0 5%;
+        padding: 0 0 0 5%;
         height: 50px;
     }
     
-    .menu {
-        display: none;
+    .menu li{
+        display:none;
+
+        &.blog{
+            display:block;
+            border:0;
+        }
+
+        a{
+            line-height:50px;
+        }
     }
-    
-    #hamburger {
-        display: none;
-        line-height: 50px;
-    }
-    
+
     #logo img {
         height: 55px;
     }
@@ -1410,10 +1414,18 @@ border-top-right-radius: 6px;
         padding-bottom:4em;
     }
 
+
+    .listing{
+        margin:0 -1.5em;
+    }
+
     .page-blogindexpage{
         h1{
             font-size:1.8em;
             font-weight:400;
+        }
+        .intro{
+            font-size:0.9em;
         }
     }
 
@@ -1421,6 +1433,9 @@ border-top-right-radius: 6px;
         h1{
             font-size:1.8em;
             font-weight:400;
+        }
+        .intro, .body{
+            font-size:0.9em;
         }
     }
 
