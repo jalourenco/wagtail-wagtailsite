@@ -9,12 +9,13 @@ from django.http import HttpResponse
 
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, \
-    InlinePanel, PageChooserPanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, InlinePanel, PageChooserPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailimages.models import Image
 from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
+from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
+
 
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
@@ -26,6 +27,42 @@ COMMON_PANELS = (
     FieldPanel('show_in_menus'),
     FieldPanel('search_description'),
 )
+
+#  == Snippet:Author ==
+
+class AuthorSnippet(models.Model):
+    title = models.CharField(max_length=255, help_text='This is the reference name for the contact. This is not displayed on the frontend.')
+    author_name = models.CharField(max_length=255)
+    author_title = models.CharField(max_length=255, blank=True)
+    author_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+') 
+    author_biog = models.TextField(blank=True, help_text='A short description of the author')
+    author_link = models.URLField(blank=True)
+    author_link_text = models.CharField(max_length=255, blank=True)
+    author_twitter = models.URLField(blank=True, help_text='Enter a twitter address')
+    author_twitter_text = models.CharField(max_length=255, blank=True, help_text='Enter a twitter handle')
+
+    def __unicode__(self):
+        return self.title
+
+AuthorSnippet.panels = [
+    FieldPanel('title'),
+    FieldPanel('author_name'),
+    FieldPanel('author_title'),
+    ImageChooserPanel('author_image'),
+    FieldPanel('author_biog'),
+    FieldPanel('author_link'),
+    FieldPanel('author_link_text'),
+    FieldPanel('author_twitter'),
+    FieldPanel('author_twitter_text'),
+]
+
+register_snippet(AuthorSnippet)
+
+class AuthorSnippetPlacement(models.Model):
+    page = ParentalKey(Page, related_name='author_snippet_placements')
+    author_snippet = models.ForeignKey('wagtailsite.AuthorSnippet', related_name='+')
+
+#  == Related links ==
 
 class LinkFields(models.Model):
     link_external = models.URLField("External link", blank=True)
@@ -72,6 +109,9 @@ class RelatedLink(LinkFields):
         abstract = True
 
 
+#  == Homepage ==
+
+
 class HomePage(Page):
     search_name = "Homepage"
 
@@ -86,6 +126,8 @@ HomePage.promote_panels = [
     MultiFieldPanel(COMMON_PANELS, "Common page configuration"),
 ]
 
+
+#  == Blog index ==
 
 class BlogIndexPageRelatedLink(Orderable, RelatedLink):
     page = ParentalKey('wagtailsite.BlogIndexPage', related_name='related_links')
@@ -144,7 +186,16 @@ BlogIndexPage.promote_panels = [
 ]
 
 
-# Blog page
+#  == Blog page ==
+
+class BlogPageAuthorSnippet(Orderable):
+    page = ParentalKey('wagtailsite.BlogPage', related_name='author_snippets')
+    author_snippet = models.ForeignKey('wagtailsite.AuthorSnippet', related_name='+')
+
+    panels = [
+        SnippetChooserPanel('author_snippet', AuthorSnippet),
+    ]
+
 
 class BlogPageRelatedLink(Orderable, RelatedLink):
     page = ParentalKey('wagtailsite.BlogPage', related_name='related_links')
@@ -153,7 +204,6 @@ class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey('wagtailsite.BlogPage', related_name='tagged_items')
 
 class BlogPage(Page):
-    intro = RichTextField(blank=True)
     body = RichTextField()
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     date = models.DateField("Post date")
@@ -182,9 +232,9 @@ class BlogPage(Page):
 BlogPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('date'),
-    FieldPanel('intro', classname="full"),
     FieldPanel('body', classname="full"),
     InlinePanel(BlogPage, 'related_links', label="Related links"),
+    InlinePanel(BlogPage, 'author_snippets', label="Author"),
 ]
 
 BlogPage.promote_panels = [
@@ -192,3 +242,8 @@ BlogPage.promote_panels = [
     ImageChooserPanel('feed_image'),
     FieldPanel('tags'),
 ]
+
+
+
+
+

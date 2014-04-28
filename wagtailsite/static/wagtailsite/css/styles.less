@@ -111,6 +111,13 @@ a {
     }
 }
 
+h6 {
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #6a6a6a;
+    font-size: 0.8em;
+}
+
 /* Main building blocks */
 
 
@@ -1051,42 +1058,111 @@ border-top-right-radius: 6px;
     }
 }
 
-/* Blog pages */
-.page-blogindexpage{
-    h1{
-        text-align:center;
-        padding: 1.5em 0 1.5em 0;
-    }
-    .listing h2{
-        font-size: 1.5em;
-        font-weight: 200;
-    }
+
+/* Blog index */
+
+.post-header {
+    padding: 90px 10px 100px;
+    width: 100%;
+    margin-top: 10px;
+    background: -webkit-linear-gradient(left,rgba(67,177,176,1),rgba(132,210,235,1)); /*Safari 5.1-6*/
+    background: -o-linear-gradient(left,rgba(67,177,176,1),rgba(132,210,235,1)); /*Opera 11.1-12*/
+    background: -moz-linear-gradient(left,rgba(67,177,176,1),rgba(132,210,235,1)); /*Fx 3.6-15*/
+    background: linear-gradient(to right, rgba(67,177,176,1),rgba(132,210,235,1)); /*Standard*/
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    border-bottom: 1px solid #FFF;
+    background-color: transparent;
 }
 
-.page-blogpage{
-    .content-wrapper{
-        text-align:left;
-    }
-
-    h1{
-        text-align:center;
-        padding: 1.5em 0 0 0;
-    }
-    h2{
-        text-align:center;
-        font-size:1.4em;
-        padding-top:1em;
-        padding-bottom:3em;
-    }
-    .body{
-        margin:1em 0;
-        color:#333;
-
-        * {
-            color:inherit;
-        }
-    }
+.post-header .post-authored {
+    display: inline-block;
+    margin: 0 auto;
 }
+
+.post-header .post-authored p {
+    display: inline-block;
+    color: #fff;
+    font-weight: 300;
+    font-size: 0.9em;
+    padding: 8px 0 6px;
+}
+
+.post-title {
+    vertical-align: middle;
+    font-size: 2em;
+    line-height: 1.4;
+    color: #fff;
+    font-weight: 100;
+    padding: 0 0 1rem;
+}
+
+.post-body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5em 10px 1.5em;
+}
+
+.post-body p {
+    margin-bottom: 1.6em;
+    line-height: 1.95em;
+    font-size: 1em;
+}
+
+.post-body blockquote {
+    line-height: 2em;
+    font-weight: 300;
+    font-size: 1.5em;
+    padding: 1.5em 2em;
+    text-align: center;
+}
+
+.authorimg {
+    float: left;
+    margin-right: 2em;
+}
+
+.authorimg img {
+    border-radius: 50%;
+    border: 2px solid #FFF;
+}
+
+.authorimg__mini {
+    margin-right: 0.5em;
+}
+
+.post-footer {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.post-footer p {
+    color: #333;
+    font-weight: 100;
+    font-size: 0.8em;
+}   
+
+.author {
+    margin: 3em 0; 
+}
+
+p.author-name {
+    padding-bottom: 0;
+    padding-top: 0.5em;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+}
+
+p.author-title {
+    margin-bottom: 2em;
+        line-height: 0.8em;
+}
+
+
 
 
 /* ------------------------------------- Responsive bits ------------------------------------- */
@@ -1440,4 +1516,36 @@ border-top-right-radius: 6px;
     }
 
     
+}
+
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
 }
