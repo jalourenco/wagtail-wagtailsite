@@ -2,10 +2,29 @@
 {% load wagtailsite_tags pageurl image_tags rich_text static %}
 
 {% block content %}
-    <div class="content-wrapper">
-        <h1>{{ self.title }}</h1>
-        <h2 class="meta date">{{ self.date|date:"j F Y" }}</h2>
-        <div class="intro">{{self.intro|richtext}}</div>
-        <div class="body">{{self.body|richtext}}</div>                  
-    </div>
+ <div class="post-body">
+    <div class="">{{self.body|richtext}}</div>
+    </div>    
+        <footer class="post-footer">
+            <hr>
+            <div class="author clearfix">
+                {% with self.author_snippets.all as authors %}
+                    {% for author in authors %}
+                        <div class="authorimg">
+                            {% if author.author_snippet.author_image %}
+                                {% image author.author_snippet.author_image width-200 %}
+                            {% else %}
+                                <img src="{% static "wagtailsite/images/wagtail-profile-image.png" %}" width="200">
+                            {% endif %}
+                        </div>    
+                        <div class="author-info">
+                            <h6 class="post-heading">About the author</h6>
+                            <p class="author-name">{{ author.author_snippet.author_name }}</p>
+                            <p class="author-title">{{ author.author_snippet.author_title }}</p>
+                            <p>{{ author.author_snippet.author_biog }}</p>
+                        </div>         
+                    {% endfor %}
+                {% endwith %}
+            </div>
+        </footer>
 {% endblock %}

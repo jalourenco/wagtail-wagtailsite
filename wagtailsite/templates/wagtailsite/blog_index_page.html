@@ -1,11 +1,11 @@
 {% extends "wagtailsite/base.html" %}
 {% load wagtailsite_tags pageurl image_tags rich_text static %}
 {% block content %}
-        
+
         {% if blogs %}
              {% for blog in blogs %}
                 <article class="post">
-                    <a href="#"><!--this should be used to activate pjax on click--> 
+                    <a href="{% pageurl blog %}"><!--this should be used to activate pjax on click--> 
                         <header class="post-header">
                             <h2 class="post-title">{{ blog.title }}</h2>
                             <div class="post-authored">
@@ -15,7 +15,7 @@
                                             {% if author.author_snippet.author_image %}
                                                 {% image author.author_snippet.author_image width-45 %}
                                             {% else %}
-                                                <img src="http://lorempixel.com/200/200/people" width="45">
+                                                <img src="{% static "wagtailsite/images/wagtail-profile-image.png" %}" width="45">
                                             {% endif %}
                                         </div>
                                         <p>
@@ -28,7 +28,7 @@
                         </header>
                     </a>
                     <!--this content needs to be bought in via pjax from blog post-->
-                    <div class="post-body">
+                    <div id="pjax-container" class="post-body">
                         <div class="">{{blog.body|richtext}}</div>
                     </div>    
                     <footer class="post-footer">
@@ -40,7 +40,7 @@
                                         {% if author.author_snippet.author_image %}
                                             {% image author.author_snippet.author_image width-200 %}
                                         {% else %}
-                                            <img src="http://lorempixel.com/200/200/people" width="200">
+                                            <img src="{% static "wagtailsite/images/wagtail-profile-image.png" %}" width="200">
                                         {% endif %}
                                     </div>    
                                     <div class="author-info">
@@ -64,5 +64,8 @@
             <p>There are currently no blog posts at all</p>
         {% endif %}
 {% endblock %}
+
+<script>$(document).pjax('a', '#pjax-container')</script>
+
 
 
