@@ -213,11 +213,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     try{
                         err_style = mc_custom_error_style;
                     } catch(e){
-                        err_style = '#mc_embed_signup
-                    input.mce_inline_error{border-color:#6B0505;} #mc_embed_signup
-                    div.mce_inline_error{margin: 0 0 1em 0; padding: 5px 10px;
-                    background-color:#6B0505; font-weight: bold; z-index: 1;
-                    color:#fff;}';
+                        err_style = '#mc_embed_signup input.mce_inline_error{border-color:#6B0505;} #mc_embed_signup div.mce_inline_error{margin: 0 0 1em 0; padding: 5px 10px; background-color:#6B0505; font-weight: bold; z-index: 1; color:#fff;}';
                     }
                     var head= document.getElementsByTagName('head')[0];
                     var style= document.createElement('style');
@@ -258,13 +254,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     'div', onkeyup: function(){}, onfocusout:function(){},
                     onblur:function(){}  };
                           var mce_validator = $("#mc-embedded-subscribe-form").validate(options);
-                          $("#mc-embedded-subscribe-form").unbind('submit');//remove the
-                    validator so we can get into beforeSubmit on the ajaxform, which then
-                    calls the validator
+                          $("#mc-embedded-subscribe-form").unbind('submit');//remove the  validator so we can get into beforeSubmit on the ajaxform, which then calls the validator
                           options = { url:
                     'http://torchbox.us1.list-manage1.com/subscribe/post-json?u=fa038e191e9c77563d1c3bfa4&id=a931fc0c9a&c=?',
-                    type: 'GET', dataType: 'json', contentType: "application/json;
-                    charset=utf-8",
+                    type: 'GET', dataType: 'json', contentType: "application/json;charset=utf-8",
                                         beforeSubmit: function(){
                                             $('#mce_tmp_error_msg').remove();
                                             $('.datefield','#mc_embed_signup').each(
@@ -367,8 +360,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     $('#mce-'+resp.result+'-response').html(msg);
                                 } else {
                                     err_id = 'mce_tmp_error_msg';
-                                    html = '<div id="'+err_id+'" style="'+err_style+'">
-                    '+msg+'</div>';
+                                    html = '<div id="'+err_id+'" style="'+err_style+'">'+msg+'</div>';
 
                                     var input_id = '#mc_embed_signup';
                                     var f = $(input_id);
