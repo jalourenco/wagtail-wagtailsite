@@ -22,13 +22,13 @@
                                             on {{ blog.date|date:"j F Y" }}
                                         </p>
                                 {% endfor %}
-                            {% endwith %}  
-                            </div>     
+                            {% endwith %}
+                            </div>
                         </header>
                     <!--this content needs to be bought in via pjax from blog post-->
                     <div class="post-body">
                         <div class="">{{blog.body|richtext}}</div>
-                    </div>    
+                    </div>
                     <footer class="post-footer">
                         <hr>
                         <div class="author clearfix">
@@ -40,33 +40,33 @@
                                         {% else %}
                                             <img src="{% static "wagtailsite/images/wagtail-profile-image.png" %}" width="200">
                                         {% endif %}
-                                    </div>    
+                                    </div>
                                     <div class="author-info">
                                         <h6 class="post-heading">About the author</h6>
                                         <p class="author-name">{{ author.author_snippet.author_name }}</p>
                                         <p class="author-title">{{ author.author_snippet.author_title }}</p>
                                         <p>{{ author.author_snippet.author_biog }}</p>
-                                    </div>         
+                                    </div>
                                 {% endfor %}
                             {% endwith %}
                         </div>
                     </footer>
-                    <!--end pjax content--> 
-                </article>    
+                    <!--end pjax content-->
+                </article>
             {% endfor %}
 
             {% if blogs.has_next %}
-                <a class="btn pagination" href="?page={{ blogs.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Older</a>
+                <a class="btn pagination" href="?page={{ blogs.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Older</a>
             {% endif %}
         {% else %}
             <p>There are currently no blog posts</p>
-        {% endif %}             
+        {% endif %}
 <script>
 
 $( document ).ready(function() {
   $(".post-header").click(function () {
 
-    
+
       if ($(this).next().css('display') == 'none') {
           $(".post-body").css('display', 'none');
           $(this).next().css('display', 'block');
@@ -76,26 +76,26 @@ $( document ).ready(function() {
           $(this).next().css('display', 'none');
           $(this).removeClass('post-header__active');
       }
-      
-      
+
+
 //      if ($(this).hasClass('blurb-big')) {
 //        $(".blurb").removeClass('blurb-big');
 //      } else {
 //        $(".blurb").removeClass('blurb-big');
 //     $(this).addClass('blurb-big');
 //      }
-      
+
 //      $(this).next().css('display','block');
-      
+
       /* if ($(this).next().css('display') == 'none') {
           $(".blogpost-content").css('display', 'none');
           $(this).next().css('display', 'block');
       } else {
           $(this).next().css('display', 'none');
       } */
-      
+
     });
-    
+
      $("#hamburger").click(function () {
     if ($('#mobilenav').css('display') == 'none') {
           $("#mobilenav").css('display', 'block');
@@ -103,7 +103,7 @@ $( document ).ready(function() {
           $('#mobilenav').css('display', 'none');
       }
     });
-    
+
 //    $("#hamburger").click(function () {
 //    if ($('#mobilenav').css('margin-top') == '-200px') {
 //          $("#mobilenav").css('margin-top', '0');
@@ -111,7 +111,7 @@ $( document ).ready(function() {
 //          $('#mobilenav').css('margin-top', '-200px');
 //      }
 //    });
-    
+
 });
 
 </script>

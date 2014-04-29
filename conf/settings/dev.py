@@ -21,6 +21,6 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 try:
-	from .local import *
+    from .local import *
 except ImportError:
-	pass
+    pass

@@ -4,7 +4,7 @@
 {% block content %}
  <div class="post-body">
     <div class="">{{self.body|richtext}}</div>
-    </div>    
+    </div>
         <footer class="post-footer">
             <hr>
             <div class="author clearfix">
@@ -16,13 +16,13 @@
                             {% else %}
                                 <img src="{% static "wagtailsite/images/wagtail-profile-image.png" %}" width="200">
                             {% endif %}
-                        </div>    
+                        </div>
                         <div class="author-info">
                             <h6 class="post-heading">About the author</h6>
                             <p class="author-name">{{ author.author_snippet.author_name }}</p>
                             <p class="author-title">{{ author.author_snippet.author_title }}</p>
                             <p>{{ author.author_snippet.author_biog }}</p>
-                        </div>         
+                        </div>
                     {% endfor %}
                 {% endwith %}
             </div>

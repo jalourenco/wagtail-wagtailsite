@@ -5,6 +5,7 @@ from wagtailsite.models import *
 
 register = template.Library()
 
+
 # settings value
 @register.assignment_tag
 def get_googe_maps_key():
@@ -26,6 +27,7 @@ def has_menu_children(page):
 @register.filter
 def content_type(value):
     return value.__class__.__name__.lower()
+
 
 # Retrieves the top menu items - the immediate children of the parent page
 # The has_menu_children method is necessary because the bootstrap menu requires
@@ -86,6 +88,7 @@ def secondary_menu(context, calling_page=None):
         'request': context['request'],
     }
 
+
 # Person feed for home page
 @register.inclusion_tag('wagtailsite/tags/homepage_people_listing.html', takes_context=True)
 def homepage_people_listing(context, count=3):
@@ -117,6 +120,7 @@ def homepage_work_listing(context, count=3):
         # required by the pageurl tag that we want to use within this template
         'request': context['request'],
     }
+
 
 # Jobs feed for home page
 @register.inclusion_tag('wagtailsite/tags/homepage_job_listing.html', takes_context=True)

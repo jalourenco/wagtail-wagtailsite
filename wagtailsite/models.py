@@ -28,13 +28,14 @@ COMMON_PANELS = (
     FieldPanel('search_description'),
 )
 
+
 #  == Snippet:Author ==
 
 class AuthorSnippet(models.Model):
     title = models.CharField(max_length=255, help_text='This is the reference name for the contact. This is not displayed on the frontend.')
     author_name = models.CharField(max_length=255)
     author_title = models.CharField(max_length=255, blank=True)
-    author_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+') 
+    author_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
     author_biog = models.TextField(blank=True, help_text='A short description of the author')
     author_link = models.URLField(blank=True)
     author_link_text = models.CharField(max_length=255, blank=True)
@@ -58,9 +59,11 @@ AuthorSnippet.panels = [
 
 register_snippet(AuthorSnippet)
 
+
 class AuthorSnippetPlacement(models.Model):
     page = ParentalKey(Page, related_name='author_snippet_placements')
     author_snippet = models.ForeignKey('wagtailsite.AuthorSnippet', related_name='+')
+
 
 #  == Related links ==
 
@@ -97,6 +100,7 @@ class LinkFields(models.Model):
     class Meta:
         abstract = True
 
+
 class RelatedLink(LinkFields):
     title = models.CharField(max_length=255, help_text="Link title")
 
@@ -131,6 +135,7 @@ HomePage.promote_panels = [
 
 class BlogIndexPageRelatedLink(Orderable, RelatedLink):
     page = ParentalKey('wagtailsite.BlogIndexPage', related_name='related_links')
+
 
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)
@@ -200,8 +205,10 @@ class BlogPageAuthorSnippet(Orderable):
 class BlogPageRelatedLink(Orderable, RelatedLink):
     page = ParentalKey('wagtailsite.BlogPage', related_name='related_links')
 
+
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey('wagtailsite.BlogPage', related_name='tagged_items')
+
 
 class BlogPage(Page):
     body = RichTextField()
@@ -242,8 +249,3 @@ BlogPage.promote_panels = [
     ImageChooserPanel('feed_image'),
     FieldPanel('tags'),
 ]
-
-
-
-
-

@@ -11,7 +11,7 @@
         <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}</title>
 
         <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
-        
+
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Varela" />
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"  />
@@ -26,10 +26,10 @@
 
         <link rel="shortcut icon" href="{% static "wagtailsite/images/wagtail-favicon-32x32.ico" %}" />
 
-        {% block extra_css %}{% endblock %} 
+        {% block extra_css %}{% endblock %}
     </head>
 
-    <body class="page-{{ self|content_type }} title-{{ self.title|slugify }} pageid-{{ self.id }} {% block body_class %}{% endblock %}"> 
+    <body class="page-{{ self|content_type }} title-{{ self.title|slugify }} pageid-{{ self.id }} {% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
         <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5XDDLH"
@@ -39,7 +39,7 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5XDDLH');</script>
-        
+
         <div id="nav-wrap">
             <nav>
                 <a id="logo" href="/">
@@ -51,17 +51,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <li><a href="/#why">FAQs</a></li>
                     <li><a href="/#testimonials">Testimonial</a></li>
                     <li><a href="/#features">What's so good?</a></li>
-                </ul>    
+                </ul>
             </nav>
-        </div>  
+        </div>
         <div id="container">
-            
+
             {% block content %}{% endblock %}
 
             <hr>
             <div id="mailing-list">
                 <h2>Stay up to date with Wagtail.</h2>
-                    
+
                 <!-- Begin MailChimp Signup Form -->
                 <link href="http://cdn-images.mailchimp.com/embedcode/classic-081711.css"
                 rel="stylesheet" type="text/css">
@@ -84,7 +84,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         margin-bottom: 0.7em;
                     }
 
-                        
+
 
                     #mc_embed_signup .mc-field-group input:hover {
                         background-color: #ffffff;
@@ -123,7 +123,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     }
 
                     #mc_embed_signup #mc-embedded-subscribe:before {
-                        content: "\f040"; 
+                        content: "\f040";
                         font-family: FontAwesome;
                         font-style: normal;
                         font-weight: normal;
@@ -144,15 +144,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             #mc_embed_signup .mc-field-group input {
                             width: 240px;
                             }
-                            
+
                             #mc_embed_signup .button {
                             border: 1px solid #41b0ae;
                             font-size: 0.8em;
                             padding: 0.2em 0 0.2em 0;
                             margin: 0 auto 1.5em;
                             width: 240px;
-                            }   
-                            
+                            }
+
                             #mc_embed_signup .mc-field-group input {
                             border: 1px solid #d4d4d4;
                             border-radius: 6px;
@@ -165,7 +165,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             text-align: center;
                             background-color: #ffffff;
                             }
-                            
+
                         }
 
                 </style>
@@ -214,11 +214,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     try{
                         err_style = mc_custom_error_style;
                     } catch(e){
-                        err_style = '#mc_embed_signup
-                    input.mce_inline_error{border-color:#6B0505;} #mc_embed_signup
-                    div.mce_inline_error{margin: 0 0 1em 0; padding: 5px 10px;
-                    background-color:#6B0505; font-weight: bold; z-index: 1;
-                    color:#fff;}';
+                        err_style = '#mc_embed_signup input.mce_inline_error{border-color:#6B0505;} #mc_embed_signup div.mce_inline_error{margin: 0 0 1em 0; padding: 5px 10px; background-color:#6B0505; font-weight: bold; z-index: 1; color:#fff;}';
                     }
                     var head= document.getElementsByTagName('head')[0];
                     var style= document.createElement('style');
@@ -259,13 +255,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     'div', onkeyup: function(){}, onfocusout:function(){},
                     onblur:function(){}  };
                           var mce_validator = $("#mc-embedded-subscribe-form").validate(options);
-                          $("#mc-embedded-subscribe-form").unbind('submit');//remove the
-                    validator so we can get into beforeSubmit on the ajaxform, which then
-                    calls the validator
+                          $("#mc-embedded-subscribe-form").unbind('submit');//remove the  validator so we can get into beforeSubmit on the ajaxform, which then calls the validator
                           options = { url:
                     'http://torchbox.us1.list-manage1.com/subscribe/post-json?u=fa038e191e9c77563d1c3bfa4&id=a931fc0c9a&c=?',
-                    type: 'GET', dataType: 'json', contentType: "application/json;
-                    charset=utf-8",
+                    type: 'GET', dataType: 'json', contentType: "application/json;charset=utf-8",
                                         beforeSubmit: function(){
                                             $('#mce_tmp_error_msg').remove();
                                             $('.datefield','#mc_embed_signup').each(
@@ -368,8 +361,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                     $('#mce-'+resp.result+'-response').html(msg);
                                 } else {
                                     err_id = 'mce_tmp_error_msg';
-                                    html = '<div id="'+err_id+'" style="'+err_style+'">
-                    '+msg+'</div>';
+                                    html = '<div id="'+err_id+'" style="'+err_style+'">'+msg+'</div>';
 
                                     var input_id = '#mc_embed_signup';
                                     var f = $(input_id);
@@ -401,9 +393,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </script>
 
                 <!--End mc_embed_signup-->
-                        
+
                 <a class="btn" href="https://twitter.com/wagtailcms" target="_blank"><i class="fa fa-twitter"></i></a>
-                <a class="btn" href="https://github.com/torchbox/wagtail/" target="_blank"><i class="fa fa-github"></i></a>     
+                <a class="btn" href="https://github.com/torchbox/wagtail/" target="_blank"><i class="fa fa-github"></i></a>
             </div>
             <div id="footer">
                 <p>Wagtail is powered by <a href="http://www.djangoproject.com" target="_blank">Django</a> and released under the <a href="https://github.com/torchbox/wagtail/blob/master/LICENSE" target="_blank">BSD License</a>.</p>
@@ -419,7 +411,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
         {% compress js %}
-            <script src="{% static "wagtailsite/js/vendor/jquery.colorbox-min.js" %}"></script>  
+            <script src="{% static "wagtailsite/js/vendor/jquery.colorbox-min.js" %}"></script>
         {% endcompress %}
 
 
