@@ -4,7 +4,7 @@
 {% block content %}
     <div class="content-wrapper">
         <h1>{{ self.title }}</h1>
-        
+
         {% if blogs %}
             <ul class="listing clearfix">
             {% for blog in blogs %}
@@ -14,8 +14,8 @@
                         {% if blog.date %}
                             <div class="meta date">{{ blog.date|date:"j F Y" }}</div>
                         {% endif %}
-                                    
-                        <div class="intro">{{blog.intro|richtext}}</div>             
+
+                        <div class="intro">{{blog.intro|richtext}}</div>
                     </a>
                 </li>
 
