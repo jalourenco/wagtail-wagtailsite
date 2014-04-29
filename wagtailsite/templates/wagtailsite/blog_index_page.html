@@ -5,7 +5,6 @@
         {% if blogs %}
              {% for blog in blogs %}
                 <article class="post">
-                    <a href="{% pageurl blog %}"><!--this should be used to activate pjax on click--> 
                         <header class="post-header">
                             <h2 class="post-title">{{ blog.title }}</h2>
                             <div class="post-authored">
@@ -26,9 +25,8 @@
                             {% endwith %}  
                             </div>     
                         </header>
-                    </a>
                     <!--this content needs to be bought in via pjax from blog post-->
-                    <div id="pjax-container" class="post-body">
+                    <div class="post-body">
                         <div class="">{{blog.body|richtext}}</div>
                     </div>    
                     <footer class="post-footer">
@@ -61,11 +59,65 @@
                 <a class="btn pagination" href="?page={{ blogs.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Older</a>
             {% endif %}
         {% else %}
-            <p>There are currently no blog posts at all</p>
-        {% endif %}
+            <p>There are currently no blog posts</p>
+        {% endif %}             
+<script>
+
+$( document ).ready(function() {
+  $(".post-header").click(function () {
+
+    
+      if ($(this).next().css('display') == 'none') {
+          $(".post-body").css('display', 'none');
+          $(this).next().css('display', 'block');
+          $(".post-header").removeClass('.post-header__active');
+          $(this).addClass('post-header__active');
+      } else {
+          $(this).next().css('display', 'none');
+          $(this).removeClass('post-header__active');
+      }
+      
+      
+//      if ($(this).hasClass('blurb-big')) {
+//        $(".blurb").removeClass('blurb-big');
+//      } else {
+//        $(".blurb").removeClass('blurb-big');
+//     $(this).addClass('blurb-big');
+//      }
+      
+//      $(this).next().css('display','block');
+      
+      /* if ($(this).next().css('display') == 'none') {
+          $(".blogpost-content").css('display', 'none');
+          $(this).next().css('display', 'block');
+      } else {
+          $(this).next().css('display', 'none');
+      } */
+      
+    });
+    
+     $("#hamburger").click(function () {
+    if ($('#mobilenav').css('display') == 'none') {
+          $("#mobilenav").css('display', 'block');
+      } else {
+          $('#mobilenav').css('display', 'none');
+      }
+    });
+    
+//    $("#hamburger").click(function () {
+//    if ($('#mobilenav').css('margin-top') == '-200px') {
+//          $("#mobilenav").css('margin-top', '0');
+//      } else {
+//          $('#mobilenav').css('margin-top', '-200px');
+//      }
+//    });
+    
+});
+
+</script>
 {% endblock %}
 
-<script>$(document).pjax('a', '#pjax-container')</script>
+
 
 
 
