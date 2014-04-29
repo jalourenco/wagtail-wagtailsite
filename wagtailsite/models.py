@@ -27,6 +27,7 @@ COMMON_PANELS = (
     FieldPanel('search_description'),
 )
 
+
 class LinkFields(models.Model):
     link_external = models.URLField("External link", blank=True)
     link_page = models.ForeignKey(
@@ -60,6 +61,7 @@ class LinkFields(models.Model):
     class Meta:
         abstract = True
 
+
 class RelatedLink(LinkFields):
     title = models.CharField(max_length=255, help_text="Link title")
 
@@ -89,6 +91,7 @@ HomePage.promote_panels = [
 
 class BlogIndexPageRelatedLink(Orderable, RelatedLink):
     page = ParentalKey('wagtailsite.BlogIndexPage', related_name='related_links')
+
 
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)
@@ -149,8 +152,10 @@ BlogIndexPage.promote_panels = [
 class BlogPageRelatedLink(Orderable, RelatedLink):
     page = ParentalKey('wagtailsite.BlogPage', related_name='related_links')
 
+
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey('wagtailsite.BlogPage', related_name='tagged_items')
+
 
 class BlogPage(Page):
     intro = RichTextField(blank=True)

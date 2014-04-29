@@ -9,11 +9,10 @@ WAGTAILSEARCH_BACKENDS = {
     }
 }
 
-
-INSTALLED_APPS+= (
+INSTALLED_APPS += (
     'djcelery',
     'kombu.transport.django',
-    'gunicorn',    
+    'gunicorn',
 )
 
 
@@ -39,6 +38,6 @@ CELERYD_LOG_COLOR = False
 
 
 try:
-	from .local import *
+    from .local import *
 except ImportError:
-	pass
+    pass
