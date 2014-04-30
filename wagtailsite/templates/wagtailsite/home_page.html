@@ -11,14 +11,6 @@
             <a class="btn youtube desktop" href="http://player.vimeo.com/video/86036070"><i class="fa fa-play-circle"></i>Promo video</a>
             <a class="btn mobile" target="_blank" href='http://player.vimeo.com/video/86036070'><i class="fa fa-play-circle"></i>Promo video</a>
             <p>For a more in-depth look at Wagtail, please watch our <a class="youtube" href="http://player.vimeo.com/video/86719782">RCA Video case study</a>.</p>
-            <script>
-                $('.youtube').colorbox({iframe: true, width: 1280, height: 720, href:function(){
-                    var videoId = new RegExp('[\\?&]v=([^&#]*)').exec(this.href);
-                    if (videoId && videoId[1]) {
-                        return 'http://youtube.com/embed/'+videoId[1]+'?rel=0&wmode=transparent';
-                    }
-                }});
-            </script>
             <!-- VIDEO STUFF -->
         </div>
         <div id="intro">
@@ -74,14 +66,6 @@
             <!-- VIDEO STUFF -->
             <a class="btn youtube desktop" href="http://player.vimeo.com/video/86719782"><i class="fa fa-play-circle"></i>Video case study</a>
 
-            <script>
-                $('.youtube').colorbox({iframe: true, width: 1280, height: 720, href:function(){
-                    var videoId = new RegExp('[\\?&]v=([^&#]*)').exec(this.href);
-                    if (videoId && videoId[1]) {
-                        return 'http://youtube.com/embed/'+videoId[1]+'?rel=0&wmode=transparent';
-                    }
-                }});
-            </script>
             <!-- VIDEO STUFF -->
 
             <img class="mbadesk" src="{% static "wagtailsite/images/mba2.png" %}" style='width:100%; max-width: 848px;' >
