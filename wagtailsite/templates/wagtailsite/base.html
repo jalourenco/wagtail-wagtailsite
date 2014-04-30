@@ -17,8 +17,8 @@
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"  />
 
         {% compress css %}
-            <link rel="stylesheet" href="{% static "wagtailsite/css/colorbox.css" %}">
-            <link rel="stylesheet" type="text/less" href="{% static "wagtailsite/css/styles.less" %}" />
+            <link rel="stylesheet" href="{% static "wagtailsite/css/colorbox.css" %}" />
+            <link rel="stylesheet" href="{% static "wagtailsite/css/styles.less" %}" type="text/less" />
         {% endcompress %}
 
         {% compress js %}
@@ -63,112 +63,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <h2>Stay up to date with Wagtail.</h2>
 
                 <!-- Begin MailChimp Signup Form -->
-                <link href="http://cdn-images.mailchimp.com/embedcode/classic-081711.css"
-                rel="stylesheet" type="text/css">
-                <style type="text/css">
-                #mc_embed_signup{clear:left; font:1em
-                'Open Sans',Helvetica,Arial,sans-serif; }
+                <link rel="stylesheet" href="http://cdn-images.mailchimp.com/embedcode/classic-081711.css">
+                <link rel="stylesheet" href="{% static "wagtailsite/css/mcembed.css" %}" />
 
-                    #mc_embed_signup .mc-field-group input {
-                        color: #717171;
-                        border: 1px solid #d4d4d4;
-                        border-radius: 6px;
-                        width: 400PX;
-                        margin: 0 auto;
-                        padding: 0.9em;
-                        font-family: 'Open Sans', sans-serif;
-                        font-size: 1em;
-                        font-weight: 100;
-                        text-align: center;
-                        background-color: #ffffff;
-                        margin-bottom: 0.7em;
-                    }
-
-
-
-                    #mc_embed_signup .mc-field-group input:hover {
-                        background-color: #ffffff;
-                        transition: 0.2s ease;
-                    }
-
-                    .mc-field-group {
-                        width: 400px;
-                    }
-
-                    #mc_embed_signup .button {
-                        clear: both;
-                        background: none;
-                        border: 2px solid #41b0ae;
-                        border-radius: 6px;
-                        color: #41b0ae;
-                        cursor: pointer;
-                        display: block;
-                        font-family: 'Open Sans', sans-serif;
-                        font-size: 1em;
-                        font-weight: 300;
-                        padding: 0.7em 0.5em 0.7em 0.5em;
-                        text-align: center;
-                        text-decoration: none;
-                        vertical-align: top;
-                        white-space: nowrap;
-                        width: 200px;
-                        height: auto;
-                        margin: 0 auto 2em;
-                    }
-
-                    #mc_embed_signup .button:hover {
-                        background-color: #41b0ae;
-                        color: #ffffff;
-                        transition: 0.3s ease;
-                    }
-
-                    #mc_embed_signup #mc-embedded-subscribe:before {
-                        content: "\f040";
-                        font-family: FontAwesome;
-                        font-style: normal;
-                        font-weight: normal;
-                        text-decoration: inherit;
-                        padding-right: 1em;
-                    }
-
-                    #mc_embed_signup form {
-                        padding: 0;
-                    }
-
-                    #mc_embed_signup .mc-field-group {
-                        width: 100%;
-                        padding-bottom: 1em;
-                    }
-
-                    @media screen and (max-width: 1025px) {
-                            #mc_embed_signup .mc-field-group input {
-                            width: 240px;
-                            }
-
-                            #mc_embed_signup .button {
-                            border: 1px solid #41b0ae;
-                            font-size: 0.8em;
-                            padding: 0.2em 0 0.2em 0;
-                            margin: 0 auto 1.5em;
-                            width: 240px;
-                            }
-
-                            #mc_embed_signup .mc-field-group input {
-                            border: 1px solid #d4d4d4;
-                            border-radius: 6px;
-                            width: 240px;
-                            margin: 0 auto;
-                            padding: 0.8em;
-                            font-family: 'Open Sans', sans-serif;
-                            font-size: 0.8em;
-                            font-weight: 100;
-                            text-align: center;
-                            background-color: #ffffff;
-                            }
-
-                        }
-
-                </style>
                 <div id="mc_embed_signup">
                     <form action="http://torchbox.us1.list-manage.com/subscribe/post?u=fa038e191e9c77563d1c3bfa4&amp;id=a931fc0c9a"
                     method="post" id="mc-embedded-subscribe-form"
