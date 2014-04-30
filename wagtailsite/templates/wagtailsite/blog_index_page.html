@@ -1,65 +1,52 @@
 {% extends "wagtailsite/base.html" %}
 {% load wagtailsite_tags pageurl image_tags rich_text static %}
+
+{% block body_class %}blog-index{% endblock %}
+
 {% block content %}
 
-        {% if blogs %}
-             {% for blog in blogs %}
-                <article class="post">
-                        <header class="post-header">
-                            <h2 class="post-title">{{ blog.title }}</h2>
-                            <div class="post-authored">
-                            {% with blog.author_snippets.all as authors %}
-                                {% for author in authors %}
-                                        <div class="authorimg authorimg__mini">
-                                            {% if author.author_snippet.author_image %}
-                                                {% image author.author_snippet.author_image width-45 %}
-                                            {% else %}
-                                                <img src="{% static "wagtailsite/images/wagtail-profile-image.png" %}" width="45">
-                                            {% endif %}
-                                        </div>
-                                        <p>
-                                            {{ author.author_snippet.author_name }}
-                                            on {{ blog.date|date:"j F Y" }}
-                                        </p>
-                                {% endfor %}
-                            {% endwith %}
-                            </div>
-                        </header>
-                    <!--this content needs to be bought in via pjax from blog post-->
-                    <div class="post-body">
-                        <div class="">{{blog.body|richtext}}</div>
-                    </div>
-                    <footer class="post-footer">
-                        <hr>
-                        <div class="author clearfix">
-                            {% with blog.author_snippets.all as authors %}
-                                {% for author in authors %}
-                                    <div class="authorimg">
+    {% if blogs %}
+         {% for blog in blogs %}
+            <article class="post">
+                <a class="post-header-anchor" href="{{ blog.url }}" id="{{ blog.url }}">
+                    <header class="post-header">
+                        <h2 class="post-title">{{ blog.title }}</h2>
+                        <div class="post-authored">
+                        {% with blog.author_snippets.all as authors %}
+                            {% for author in authors %}
+                                    <div class="authorimg authorimg__mini">
                                         {% if author.author_snippet.author_image %}
-                                            {% image author.author_snippet.author_image width-200 %}
+                                            {% image author.author_snippet.author_image width-45 %}
                                         {% else %}
-                                            <img src="{% static "wagtailsite/images/wagtail-profile-image.png" %}" width="200">
+                                            <img src="{% static "wagtailsite/images/wagtail-profile-image.png" %}" width="45">
                                         {% endif %}
                                     </div>
-                                    <div class="author-info">
-                                        <h6 class="post-heading">About the author</h6>
-                                        <p class="author-name">{{ author.author_snippet.author_name }}</p>
-                                        <p class="author-title">{{ author.author_snippet.author_title }}</p>
-                                        <p>{{ author.author_snippet.author_biog }}</p>
-                                    </div>
-                                {% endfor %}
-                            {% endwith %}
+                                    <p>
+                                        {{ author.author_snippet.author_name }}
+                                        on {{ blog.date|date:"j F Y" }}
+                                    </p>
+                            {% endfor %}
+                        {% endwith %}
                         </div>
-                    </footer>
-                    <!--end pjax content-->
-                </article>
-            {% endfor %}
+                    </header>
+                </a>
 
-            {% if blogs.has_next %}
-                <a class="btn pagination" href="?page={{ blogs.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Older</a>
-            {% endif %}
-        {% else %}
-            <p>There are currently no blog posts</p>
+                <!--this content needs to be bought in via pjax from blog post-->
+                <div class="post-body"></div>
+                <!--end pjax content-->
+            </article>
+        {% endfor %}
+
+        {% if blogs.has_next %}
+            <a class="btn pagination" href="?page={{ blogs.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Older</a>
         {% endif %}
+    {% else %}
+        <p>There are currently no blog posts</p>
+    {% endif %}
 
+{% endblock %}
+
+
+{% block extra_js %}
+    <script src="{% static "wagtailsite/js/blog-index.js" %}"></script>
 {% endblock %}
