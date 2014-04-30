@@ -114,5 +114,8 @@
 }
 
 #mc_embed_signup div#mce-responses {
-    margin-bottom: 2em;
+    margin-bottom: 1em;
+}
+#mc_embed_signup div.mce_inline_error{
+    margin-bottom: 0;
 }
