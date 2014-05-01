@@ -6,6 +6,23 @@
     {% if not request.is_ajax %}
         <header class="post-header">
             <h2 class="post-title">{{ self.title }}</h2>
+            <div class="post-authored">
+            {% with self.author_snippets.all as authors %}
+                {% for author in authors %}
+                        <div class="authorimg authorimg__mini">
+                            {% if author.author_snippet.author_image %}
+                                {% image author.author_snippet.author_image width-45 %}
+                            {% else %}
+                                <img src="{% static "wagtailsite/images/wagtail-profile-image.png" %}" width="45">
+                            {% endif %}
+                        </div>
+                        <p>
+                            {{ author.author_snippet.author_name }}
+                            on {{ self.date|date:"j F Y" }}
+                        </p>
+                {% endfor %}
+            {% endwith %}
+            </div>
         </header>
     {% endif %}
 
@@ -22,7 +39,7 @@
                         {% if author.author_snippet.author_image %}
                             {% image author.author_snippet.author_image width-200 %}
                         {% else %}
-                            <img src="{% static "wagtailsite/images/wagtail-profile-image.png" %}" width="200">
+                            <img src="{% static "wagtailsite/images/wagtail-profile-image.png" %}" width="200" height="200">
                         {% endif %}
                     </div>
                     <div class="author-info">

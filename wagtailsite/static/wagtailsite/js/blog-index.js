@@ -33,6 +33,8 @@
     });
 
     function hideBlogPosts(){
+        $('.post').removeClass('post-selected');
+
         $('.post-body, .post-footer').hide('slow', function(){
             $(this).remove();
         });
@@ -40,6 +42,9 @@
 
     function showBlogPost(contents){
         var $anchor = $('a[href="' + location.pathname + '"]');
+
+        $anchor.closest('.post').addClass('post-selected');
+
         $anchor
             .siblings('.post-body, .post-footer')
             .hide('slow', function(){

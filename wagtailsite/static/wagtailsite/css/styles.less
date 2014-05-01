@@ -1061,7 +1061,7 @@ border-top-right-radius: 6px;
 
 /* Blog index */
 
-.post-header-anchor{
+.post-header-anchor {
     display: block;
 }
 .post-header {
@@ -1079,13 +1079,19 @@ border-top-right-radius: 6px;
     background-color: transparent;
 }
 
+body.page-blogpage .post-header {
+    padding-bottom: 0;
+}
+
 .post-header:hover {
     opacity: 0.8;
-    cursor: pointer;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+}
+body.page-blogindexpage .post-header:hover {
+    cursor: pointer;
 }
 
 .post-header .post-authored {
@@ -1115,7 +1121,7 @@ border-top-right-radius: 6px;
     margin: 0 auto;
     padding: 1.5em 10px 1.5em;
 }
-body.blog-index .post-body {
+body.page-blogindexpage .post-body {
     display: none;
 }
 
@@ -1159,7 +1165,7 @@ body.blog-index .post-body {
     font-size: 0.8em;
 }
 
-body.blog-index .post-footer {
+body.page-blogindexpage .post-footer {
     display: none;
 }
 
@@ -1180,6 +1186,14 @@ p.author-title {
     line-height: 0.8em;
 }
 
+.post.post-selected, body.page-blogpage {
+    .post-header {
+        background: transparent;
+    }
+    *, .post-header .post-authored p{
+        color: #43B1B0;
+    }
+}
 
 
 /* ------------------------------------- Responsive bits ------------------------------------- */
