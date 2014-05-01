@@ -54,3 +54,10 @@
     </footer>
 
 {% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        var blogIndexPageUrl = '{% pageurl self.get_parent %}';
+    </script>
+    <script src="{% static "wagtailsite/js/blog.js" %}"></script>
+{% endblock %}

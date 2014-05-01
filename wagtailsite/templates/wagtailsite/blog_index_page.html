@@ -75,5 +75,8 @@
 
 
 {% block extra_js %}
-    <script src="{% static "wagtailsite/js/blog-index.js" %}"></script>
+    <script type="text/javascript">
+        var blogIndexPageUrl = '{% pageurl self %}';
+    </script>
+    <script src="{% static "wagtailsite/js/blog.js" %}"></script>
 {% endblock %}
