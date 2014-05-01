@@ -7,59 +7,54 @@
 
         var state = History.getState(); // Note: We are using History.getState() instead of event.state
 
-        var contents = cache[state.url];
-
         hideBlogPosts();
         if(initialUrl == state.url){
             return;
         }
 
-        if(contents){
-            showBlogPost(contents);
-        }else{
-            $.ajax({
-                // use different url for ajax in order to avoid the browser caching the ajax response,
-                // and displaying it instead of the real page
-                url: state.url + '?_ajax=1',
-                success: function(data, status, xhr){
-                    var url = this.url.replace('?_ajax=1', '');
-                    cache[url] = data;
-                    showBlogPost(data);
-                },
-                complete:function(){
-                }
-            });
-        }
+        showBlogPost();
+
+        // var contents = cache[state.url];
+        //
+        // if(contents){
+        //     showBlogPost(contents);
+        // }else{
+        //     $.ajax({
+        //         // use different url for ajax in order to avoid the browser caching the ajax response,
+        //         // and displaying it instead of the real page
+        //         url: state.url + '?_ajax=1',
+        //         success: function(data, status, xhr){
+        //             var url = this.url.replace('?_ajax=1', '');
+        //             cache[url] = data;
+        //             showBlogPost(data);
+        //         },
+        //         complete:function(){
+        //         }
+        //     });
+        // }
     });
 
     function hideBlogPosts(){
         $('.post').removeClass('post-selected');
 
-        $('.post-body, .post-footer').hide('slow', function(){
-            $(this).remove();
-        });
+        $('.post-body-and-footer').slideUp('fast', function(){});
     }
 
-    function showBlogPost(contents){
+    function showBlogPost(){
         var $anchor = $('a[href="' + location.pathname + '"]');
 
         $anchor.closest('.post').addClass('post-selected');
 
         $anchor
-            .siblings('.post-body, .post-footer')
-            .hide('slow', function(){
-                $(this).remove();
-            });
-        $anchor
-            .after(contents)
-            .siblings('.post-body, .post-footer')
-            .show('slow');
+            .closest('.post')
+            .find('.post-body-and-footer')
+            .slideDown('slow');
     }
 
     $(function(){
         $('a.post-header-anchor').on('click', function(e){
             // go back to index page if clicked on an already opened post
-            if($(this).next('.post-body').html()){
+            if($(this).closest('.post').hasClass('post-selected')){
                 History.pushState({}, initialTitle, initialUrl);
             }else{
                 History.pushState({}, $(this).text(), $(this).attr('href'));
