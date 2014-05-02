@@ -64,9 +64,14 @@
 
         {% endfor %}
 
+        {% if blogs.has_previous %}
+            <a class="btn pagination" href="?page={{ blogs.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Newer</a>
+        {% endif %}
+
         {% if blogs.has_next %}
             <a class="btn pagination" href="?page={{ blogs.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Older</a>
         {% endif %}
+
     {% else %}
         <p>There are currently no blog posts</p>
     {% endif %}
