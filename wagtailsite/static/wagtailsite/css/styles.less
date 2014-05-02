@@ -1182,6 +1182,12 @@ body.page-blogindexpage .post-body-and-footer {
     margin-top: -110px;
 }
 
+.post.post-selected-solid-bg .post-header{
+    // transitions don't work for gradient background,
+    // so we need to switch back to a solid one
+    // but unfortunately it seems to work in one direction only
+    background: #43B1B0;
+}
 .post.post-selected{
     .post-header {
         background: transparent;
