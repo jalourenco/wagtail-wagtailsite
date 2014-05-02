@@ -7,9 +7,9 @@
 
         var state = History.getState(); // Note: We are using History.getState() instead of event.state
 
-        var isIndexPage = new RegExp(blogIndexPageUrl + '$');
+        var isIndexPage = new RegExp(blogIndexPageUrl + '(\\?.+)?$');
 
-        // if there was a full reload after and the history api had been used then
+        // if there was a full reload after the history api had been used then
         // we might need to do a full reload again when the back button is pressed
         if(!$('.post a[href="' + location.pathname + '"]').length){
             if(!(location.pathname.match(isIndexPage) && initialUrl.match(isIndexPage))){
