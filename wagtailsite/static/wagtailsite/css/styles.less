@@ -308,6 +308,11 @@ nav {
     font-weight: 400;
 }
 
+.lt-ie9 nav{
+    background: #fff;
+    .opacity(0.9);
+}
+
 nav a {
     color: #333333;
     text-decoration: none;
@@ -798,7 +803,7 @@ blockquote:before,{
     display: block;
 }
 
-.menu li a:hover {
+.menu li:hover a {
     color: #ffffff;
     -o-transition: .3s;
     -ms-transition: .3s;
@@ -812,6 +817,7 @@ blockquote:before,{
 }
 
 .menu li:hover {
+    background: #888;
     background: rgba(20, 20, 20, 0.7);
     -o-transition: .3s;
     -ms-transition: .3s;
@@ -1068,6 +1074,8 @@ border-top-right-radius: 6px;
 .post-header {
     padding: 90px 10px 100px;
     width: 100%;
+    background-color: transparent;
+    background: #84D2EB;
     background: -webkit-linear-gradient(left,rgba(67,177,176,1),rgba(132,210,235,1)); /*Safari 5.1-6*/
     background: -o-linear-gradient(left,rgba(67,177,176,1),rgba(132,210,235,1)); /*Opera 11.1-12*/
     background: -moz-linear-gradient(left,rgba(67,177,176,1),rgba(132,210,235,1)); /*Fx 3.6-15*/
@@ -1077,11 +1085,9 @@ border-top-right-radius: 6px;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     border-bottom: 1px solid #FFF;
-    background-color: transparent;
 }
 
 .post-header:hover {
-    opacity: 0.8;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
@@ -1089,6 +1095,7 @@ border-top-right-radius: 6px;
 }
 
 body.page-blogindexpage .post-header:hover {
+    .opacity(0.8);
     cursor: pointer;
 }
 

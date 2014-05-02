@@ -19,3 +19,10 @@
     -o-transition: @transition;
     transition: @transition;
 }
+
+.opacity(@val) {
+    @ie: @val * 100;
+    -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{ie})"; // IE 8
+    filter: ~"alpha(opacity=@{ie})"; // IE 5-7
+    opacity: @val;
+}

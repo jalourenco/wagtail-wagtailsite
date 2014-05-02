@@ -12,6 +12,10 @@
 
         <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
 
+        <!--[if lt IE 9]>
+            <script src="{% static "wagtailsite/js/vendor/html5shiv.js" %}"></script>
+        <![endif]-->
+
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Varela" />
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"  />

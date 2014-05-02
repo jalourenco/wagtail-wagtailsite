@@ -1,4 +1,4 @@
-(function(){
+if(!$('html').hasClass('lt-ie9'))(function(){
     var cache = {};
     var initialUrl = location.href;
     var initialTitle = document.title;
