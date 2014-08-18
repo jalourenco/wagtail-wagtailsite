@@ -1073,11 +1073,18 @@ border-top-right-radius: 6px;
         padding: 1.5em 0 0 0;
     }
     h2{
-        text-align:center;
         font-size:1.4em;
         padding-top:1em;
-        padding-bottom:3em;
+        padding-bottom:2em;
     }
+
+    .date{
+        text-align:center;
+    }
+    .intro{
+        font-size:1.2em;
+    }
+
     .body{
         margin:1em 0;
         color:#333;
@@ -1085,6 +1092,54 @@ border-top-right-radius: 6px;
         * {
             color:inherit;
         }
+    }
+}
+
+/* General rich text areas */
+
+.rich-text{
+    p, ul, ol, h2, h3, h4, h5, h6{
+        padding-bottom:0em;
+        margin-bottom:1em;
+    }
+    h2,h3,h4,h5{
+        padding-top:0.5em;
+        margin-bottom:0.8em;
+    }
+    p, ol, ul{
+        font-weight: 300;
+        text-align: left;
+        font-size: 0.9em;
+        line-height: 1.7em;
+        color: #717171;
+    }
+
+    ul,ol{
+        padding-left:2.5em;
+    }
+    ol{
+        list-style-type:decimal;
+    }
+    ul{
+        list-style-type:inherit;
+    }
+
+    h3, h4, h5{
+        font-weight:400;
+    }
+    h3{
+        font-size:1.2em;
+    }
+    h4, h5{
+        font-size:1em;
+    }
+
+    hr{
+        margin:2em;
+    }
+    img{
+        max-width:100%;
+        height:auto;
     }
 }
 
