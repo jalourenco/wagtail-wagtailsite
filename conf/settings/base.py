@@ -8,7 +8,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Wagtail team', 'wagtail-team@torchbox.com'),
 )
 
 MANAGERS = ADMINS
@@ -162,6 +162,10 @@ INSTALLED_APPS = (
 
     'wagtailsite',
 )
+
+SOUTH_MIGRATION_MODULES = {
+    'taggit': 'taggit.south_migrations',
+}
 
 EMAIL_SUBJECT_PREFIX = '[wagtail-wagtailsite] '
 

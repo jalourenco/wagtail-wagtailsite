@@ -1,4 +1,4 @@
 Django==1.6.2
-South==0.8.4
+South==1.0
 psycopg2==2.5.2
--e git://github.com/torchbox/wagtail.git#egg=wagtail
+wagtail==0.5
