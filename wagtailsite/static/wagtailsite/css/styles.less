@@ -638,7 +638,6 @@ p {
     text-align: left;
     font-size: 0.9em;
     line-height: 1.7em;
-    color: #717171;
 }
 
 #hero .hero-inner a{
@@ -1083,22 +1082,17 @@ border-top-right-radius: 6px;
     }
     .intro{
         font-size:1.2em;
+        color:#AAA;
     }
-
     .body{
         margin:1em 0;
-        color:#333;
-
-        * {
-            color:inherit;
-        }
     }
 }
 
 /* General rich text areas */
 
 .rich-text{
-    p, ul, ol, h2, h3, h4, h5, h6{
+    p, ul, ol, h2, h3, h4, h5, h6, pre{
         padding-bottom:0em;
         margin-bottom:1em;
     }
@@ -1111,9 +1105,13 @@ border-top-right-radius: 6px;
         text-align: left;
         font-size: 0.9em;
         line-height: 1.7em;
-        color: #717171;
     }
-
+    b{
+        font-weight:400;
+    }
+    i{
+        font-style:italic;
+    }
     ul,ol{
         padding-left:2.5em;
     }
@@ -1140,6 +1138,13 @@ border-top-right-radius: 6px;
     img{
         max-width:100%;
         height:auto;
+    }
+    pre, code{
+        font-family:courier new,courier,monospace;
+        background-color:#EEE;
+        padding:0.1em;
+        font-size:0.8em;
+        text-shadow:1px 1px 0px white;
     }
 }
 
