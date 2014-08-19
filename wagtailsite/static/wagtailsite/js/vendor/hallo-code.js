@@ -1,5 +1,4 @@
 /* Overrides default wagtail halloheadings, to add "pre" as valid block-level markup */
-
 (function() {
   (function(jQuery) {
     return jQuery.widget("IKS.halloheadings", {
