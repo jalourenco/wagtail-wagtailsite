@@ -5,3 +5,4 @@ redis==2.9.1
 django-redis-cache==0.10.2
 pyelasticsearch==0.6.1
 elasticutils==0.8.2
+elasticsearch==0.4.5
